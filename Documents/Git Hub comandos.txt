@@ -20,6 +20,7 @@ git remote add origin "https://github.com/okcee/Python-okcee.git"
 git push -u origin main
 git push  -  Para subir un archivo usaremos git push
 git pull  -  para bajar un cambio desde nuestro repositorio a local usaremos git pull.
+git status --ignored -> Para saber si hay archivos ignorados en el actual commit.
 
     - Para cambiar el origen del remoto
 git remote -v  -  Mostrar los remotos configurados actualmente
