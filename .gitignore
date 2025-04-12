@@ -12,5 +12,5 @@
 .snapshots/*
 
 # Security settings
-*.config
+*.config.ini
 *.eve
