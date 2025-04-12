@@ -29,3 +29,5 @@ https://skills.yourlearning.ibm.com/activity/MDL-298
 Mejore la redacción de su currículum con IA generativa
 https://skills.yourlearning.ibm.com/activity/ILB-XVZNEXKGDVQN2PD3
 
+Jupyterlite online
+https://jupyter.org/try-jupyter

@@ -36,7 +36,7 @@ git clone https://github.com/okcee/Python-okcee.git
 
 - Branchs (Ramas)
 git branch nombreRama	Crear rama
-git branch 		veremos las ramas del proyecto y en qué rama me encuentro
+git branch 		Ver las ramas del proyecto y en qué rama me encuentro
 git checkout nombreRama		cambiar de rama
 git Branch -d nombreRama	borra una rama
 
