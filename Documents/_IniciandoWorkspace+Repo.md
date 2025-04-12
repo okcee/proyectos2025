@@ -1,5 +1,5 @@
-# Preparación de Visual Studio Code
-## Iniciando un nuevo Workspace y vincularlo con un repositorio de GitHub
+# --- **Preparación de Visual Studio Code** ---
+## Iniciando un nuevo Workspace y vincularlo con un repositorio de GitHub.
 
 1. Debemos iniciar un nuevo `workspace` en VSCode. Tenemos que ir al `menu bar`, seleccionar `File` y después `New Window` (con o sin profile, que son los datos y configuraciones del usuario).  
 2. Crear en los directorios de nuestro sistema de almacenamiento local (disco duro o disco ssd) a nuestra elección, la carpeta principal (carpeta raíz) del sistema de directorios que, en un futuro contendrá el total de carpetas y archivos del `repositorio local`. GitHub se compone de un `repositorio local` y un `repositorio remoto`.  
@@ -120,4 +120,5 @@ El contenido del archivo `.gitignore` básico que sugiero para un principio es e
     4. Para un overview del sistema
         git help git
 
-# Creando carpetas como un proyecto
+# Creando carpetas como un proyecto y configurando su entorno virtual.
+
