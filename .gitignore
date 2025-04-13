@@ -15,4 +15,9 @@
 *.eve
 **/*.config.ini
 
-# Entornos virtuales
+# User settings
+**/settings.json
+**/launch.json
+
+# Virtual Enviroments
+.veNumPy

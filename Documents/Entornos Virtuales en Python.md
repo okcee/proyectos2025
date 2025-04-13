@@ -83,7 +83,7 @@ pip install virtualenv
 
 # Activar el entorno virtual
 # En Windows:
-.venv\Scripts\activate
+.venv/Scripts/activate
 # En macOS y Linux:
 source .venv/bin/activate
 # .venv: Es una convención común para nombrar el directorio del entorno virtual. El punto al inicio lo hace oculto en algunos sistemas.
