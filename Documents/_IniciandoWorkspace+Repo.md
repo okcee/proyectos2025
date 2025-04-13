@@ -382,7 +382,7 @@ Ventajas de la configuración propuesta a continuación:
 # Instalar dependencias del proyecto
 
 Mediante `pip` instalariamos las dependencias que necesitemos o querramos para cada proyecto, y se podrían configurar en el `settings.json` del proyecto en cuestión.  
-pip install flake8 bandit 
+pip install flake8 bandit black
 
 ## --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
 
