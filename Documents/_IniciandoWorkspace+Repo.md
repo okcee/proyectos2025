@@ -1,4 +1,4 @@
-# --- **Preparación de Visual Studio Code** ---
+# --- **Preparación de Visual Studio Code en Windows11** ---
 ## Iniciando un nuevo Workspace y vincularlo con un repositorio de GitHub.
 
 1. Debemos iniciar un nuevo `workspace` en VSCode. Tenemos que ir al `menu bar`, seleccionar `File` y después `New Window` (con o sin profile, que son los datos y configuraciones del usuario).  
@@ -122,3 +122,84 @@ El contenido del archivo `.gitignore` básico que sugiero para un principio es e
 
 # Creando carpetas como un proyecto y configurando su entorno virtual.
 
+En cada proyecto nuevo vamos a instalar y usar `virtualenv` en lugar de `venv` con Python 3, ofrece más funcionalidades y es más rápido con el método de inicialización `app-data`.  
+Con el uso `virtualenv` se resuelve el problema principal, la gestión de dependencias y versiones entre diferentes proyectos Python. Si dos aplicaciones requieren versiones conflictivas de la misma librería, instalar todo globalmente puede generar problemas. También ayuda a mantener un entorno estable para una aplicación específica y a trabajar sin permisos para modificar la instalación global de Python.  
+Si está trabajando con Python 3, debe instalar virtualenv usando pip3, se da por hecho que ya están instalado, tanto Python3 en el sistema operativo, como las extensiones oficiales de Python3 en VScode.  
+
+Pasamos a hacer las configuraciones necesarias para configurar el entorno del proyecto:  
+1. Instalar pip en las dependencias generales del `workspace`, para ello:
+   1. Ahora iniciaremos una Terminal, para ejecutar los comandos de Git en su consola. Tenemos que ir al `menu bar`, seleccionar `Terminal` y después `New Terminal`. Verificamos que la dirección abierta en la terminal coíncida con la carpeta raíz del `workspace`. 
+   2. Procedemos a ejecutar los comandos necesarios para instalar pip.  
+   3. El comando para instalar la última versión de `pip` es:  
+        python -m pip install --upgrade pip  
+   4. El comando para actualizar a la última versión de `pip` es:  
+        pip3 install --upgrade pip  
+   5. El comando para comprobar la versión instalada de `pip` es:  
+        pip3 --version  
+        pip --version  
+2. Instalación de `Virtualenv` mediante comandos en la consola.  
+        pip3 install virtualenv  
+        pip install --upgrade virtualenv
+3. Creamos la carpeta del proyecto con el nombre deseado, en la explicación la denominaremos `Proyecto`, por lo general en la carpeta raíz de nuestro `workspace`.  
+4. Una vez creada, sobre el nombre de la misma, abrimos con el ratón derecho del ratón el menú contextual y seleccionamos la opción `Open in Integrated Terminal`, de manera que está consola de terminal esté con la dirección principal del proyecto.
+5. Creamos el entorno virtual `Virtualenv` con el siguiente comando, si le añadimos un `.` al inicio del nombre del entorno, se podrá añadir después al archivo `.gitignore`:  
+   1. La recomendación a usar es:  
+        virtualenv --no-site-packages .\<nombre_del_entorno>  
+   2. La sintaxis básica del comando para crear un entorno virtual utilizando `Virtualenv` es:  
+        virtualenv \<nombre_del_entorno> 
+   3. Opciones adicionales comunes:  
+      1. Especifica la versión de Python que se utilizará para crear el entorno virtual.  
+        virtualenv --python=/ruta/a/python \<nombre_del_entorno>  
+      2. Crea un entorno virtual "aislado" que no hereda las librerías instaladas globalmente en tu sistema.  
+        virtualenv --no-site-packages \<nombre_del_entorno>  
+      3. Muestra la ayuda completa del comando virtualenv, listando todas las opciones disponibles.  
+        virtualenv -h
+        virtualenv --help
+      4. Pasos para eliminar el entorno virtual creado.  
+         1. Desactivar el entorno virtual actual (si está activo):  
+        deactivate  
+         2. Eliminar la carpeta del entorno virtual creado:  
+        rmvirtualenv \<nombre_del_entorno>  
+        rm -rf \<nombre_del_entorno>  
+   4. Comprobamos en el sistema de archivos `explorer` de `VScode` que se haya creado con éxito el entorno virtual creado, que será una carpeta con ese nombre.  
+6. 
+7. 
+.venv\Scripts\activate
+
+
+
+# --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
+
+El flujo de trabajo típico es:
+
+1. Tener virtualenv instalado globalmente (o accesible en tu entorno base).  
+2. Navegar a la carpeta de tu nuevo proyecto en la terminal.  
+3. Usar el comando virtualenv para crear un nuevo entorno virtual dentro de esa carpeta (por ejemplo, virtualenv .venv).  
+4. Activar el entorno virtual que se creó en el paso anterior.  
+5. Una vez activado el entorno virtual, pip estará disponible dentro de ese entorno para instalar las dependencias específicas de tu proyecto.  
+
+Proyectos/  
+├── Proyecto1/  
+│   ├── .vscode/  
+│   │   ├── settings.json # Configuración de VS Code para el proyecto y sus dependencias.  
+│   │   └── launch.json # Configuración de depuración guardada junto con su configuración del entorno virtual.  
+│   ├── mi_script1.py  
+│   └── .virtEnv1/  
+│       └── Scripts/  
+│           └── python.exe  
+├── Proyecto2/  
+│   ├── .vscode/  
+│   │   ├── settings.json  
+│   │   └── launch.json  
+│   ├── mi_script2.py  
+│   └── .virtEnv2/  
+│       └── Scripts/  
+│           └── python.exe  
+└── Proyecto3/  
+    ├── .vscode/  
+    │   ├── settings.json  
+    │   └── launch.json  
+    ├── mi_script3.py  
+    └── .virtEnv3/  
+        └── Scripts/  
+            └── python.exe  

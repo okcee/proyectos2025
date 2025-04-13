@@ -14,3 +14,5 @@
 # Security settings
 *.eve
 **/*.config.ini
+
+# Entornos virtuales
