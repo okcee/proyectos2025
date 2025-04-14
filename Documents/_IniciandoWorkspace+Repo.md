@@ -141,11 +141,11 @@ Pasamos a hacer las configuraciones necesarias para configurar el entorno del pr
 1. Instalar pip en las dependencias generales del `workspace`, para ello:
    1. Ahora iniciaremos una Terminal, para ejecutar los comandos de Git en su consola. Tenemos que ir al `menu bar`, seleccionar `Terminal` y después `New Terminal`. Verificamos que la dirección abierta en la terminal coíncida con la carpeta raíz del `workspace`. 
    2. Procedemos a ejecutar los comandos necesarios para instalar pip.  
-   3. El comando para instalar la última versión de `pip` es:  
+   3. El comando para **instalar** la última versión de `pip` es:  
         python -m pip install --upgrade pip  
-   4. El comando para actualizar a la última versión de `pip` es:  
+   4. El comando para **actualizar** a la última versión de `pip` es:  
         pip3 install --upgrade pip  
-   5. El comando para comprobar la versión instalada de `pip` es:  
+   5. El comando para **comprobar la versión** instalada de `pip` es:  
         pip3 --version  
         pip --version  
 2. Instalación de `Virtualenv` mediante comandos en la consola.  
@@ -196,13 +196,14 @@ Aquí tienes una estructura básica con explicaciones y opciones:
 ```JSON
 {
     // Configuración general de Python
-    "python.pythonPath": "${workspaceFolder}\\.venv\\Scripts\\python.exe", // Ruta al intérprete de Python del entorno virtual
-    "python.envFile": "${workspaceFolder}\\.venv\\Scripts\\activate", // (Opcional) Archivo de activación del entorno virtual
+    "python.pythonPath": "${workspaceFolder}\\Proyecto\\.venv\\Scripts\\python.exe", // Ruta al intérprete de Python del entorno virtual
+    "python.envFile": "${workspaceFolder}\\Proyecto\\.venv\\Scripts\\activate", // (Opcional) Archivo de activación del entorno virtualProyecto\\
+    "python.terminal.activateEnvironment": true, // Activa el entorno virtual en el terminal
 
     // Configuración del linter ("pylint", "flake8", "mypy", "bandit" para seguridad, etc.)
     "python.linting.enabled": true,
     "python.linting.linter": "pylint", // Asigna el que tienes instalado en tu entorno virtual
-    "python.linting.pylintPath": "${workspaceFolder}\\.venv\\Scripts\\pylint.exe", // Ruta al ejecutable del linter
+    "python.linting.pylintPath": "${workspaceFolder}\\Proyecto\\.venv\\Scripts\\pylint.exe", // Ruta al ejecutable del linter
     // Opcional: Configuración específica del linter
     "python.linting.pylintArgs": [
         "--rcfile=${workspaceFolder}\\.pylintrc", // Si tienes un archivo de configuración
@@ -223,8 +224,8 @@ Aquí tienes una estructura básica con explicaciones y opciones:
 
     // Configuración del formateador de código (autopep8, black)
     "python.formatting.provider": "black", // Asigna el que tienes instalado en tu entorno virtual
-    "python.formatting.autopep8Path": "${workspaceFolder}\\.venv\\Scripts\\autopep8.exe", // Ruta al ejecutable de autopep8
-    "python.formatting.blackPath": "${workspaceFolder}\\.venv\\Scripts\\black.exe", // Ruta al ejecutable de black
+    "python.formatting.autopep8Path": "${workspaceFolder}\\Proyecto\\.venv\\Scripts\\autopep8.exe", // Ruta al ejecutable de autopep8
+    "python.formatting.blackPath": "${workspaceFolder}\\Proyecto\\.venv\\Scripts\\black.exe", // Ruta al ejecutable de black
     // Opcional: Configuración específica del formateador
     "python.formatting.autopep8Args": [
         "--max-line-length=120"
@@ -265,12 +266,12 @@ Explicación de cada sección y recomendaciones:
 
 1. `python.pythonPath:`  
 Importante: Esta es la configuración crucial. Debes establecer la ruta absoluta al ejecutable python.exe dentro de tu entorno virtual.  
-Recomendación: Asumiendo que tu entorno virtual se llama .venv y está ubicado en la raíz de tu proyecto, la ruta suele ser "${workspaceFolder}\\.venv\\Scripts\\python.exe". Ajusta la ruta si tu entorno virtual tiene un nombre o ubicación diferente.  
+Recomendación: Asumiendo que tu entorno virtual se llama .venv y está ubicado en la raíz de tu proyecto, la ruta suele ser "${workspaceFolder}\\Proyecto\\.venv\\Scripts\\python.exe". Ajusta la ruta si tu entorno virtual tiene un nombre o ubicación diferente.  
 "${workspaceFolder}": Esta variable de VS Code representa la ruta al directorio raíz de tu proyecto abierto.  
 
 2. `python.envFile:`  
 Opcional pero útil: Puedes especificar la ruta al script de activación de tu entorno virtual (activate para cmd o PowerShell). Aunque python.pythonPath suele ser suficiente para que VS Code detecte el entorno, esto puede ayudar en algunos casos o para otras extensiones.  
-Recomendación: Para entornos virtuales creados con venv, la ruta suele ser "${workspaceFolder}\\.venv\\Scripts\\activate".  
+Recomendación: Para entornos virtuales creados con venv, la ruta suele ser "${workspaceFolder}\\Proyecto\\.venv\\Scripts\\activate".  
 
 3. `python.linting:` Configuración del Linter:  
 Recomendación: Activa el linter ("python.linting.enabled": true) para identificar errores de sintaxis, problemas de estilo y posibles errores en tu código.  
