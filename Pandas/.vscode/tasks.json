@@ -1,0 +1,21 @@
+
+// El archivo tasks.json en Visual Studio Code (VS Code) se utiliza para automatizar tareas dentro de tu flujo de trabajo de desarrollo.
+// Se ha añadido una configuración "Run Python File (Workspace Root)", una forma útil de configurar una tarea rápida para ejecutar el archivo Python actualmente abierto utilizando el intérprete de Python configurado para el proyecto (idealmente el de tu entorno virtual).
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run Python File (Workspace Root)",
+            "type": "shell",
+            "command": "${config:python.pythonPath} ${file}", // Alternativa: "python ${file}"
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        }
+    ]
+}
