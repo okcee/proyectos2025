@@ -1,6 +1,6 @@
 import numpy as np
 
-'''Ejercicio 1
+'''Ejercicio 5
 Generar N números aleatorios enteros entre un valor mínimo y máximo
 Desarrolla una función llamada generar_numeros_enteros_aleatorios que tome como entrada el número de elementos N, un valor mínimo minimo y un valor máximo maximo, y utilice NumPy para generar una lista de N números enteros aleatorios en el rango [minimo, maximo].
 def generar_numeros_enteros_aleatorios(N, minimo, maximo):
@@ -18,7 +18,7 @@ def generar_numeros_enteros_aleatorios(N, minimo, maximo):
     return numeros_aleatorios
 print(generar_numeros_enteros_aleatorios(5, 1, 10))
 
-'''Ejercicio 2
+'''Ejercicio 6
 Generar una Secuencia de Números
 Desarrolla una función llamada generar_secuencia_numerica que tome como entrada un valor mínimo minimo, un valor máximo maximo y un paso paso, y utilice NumPy para generar una secuencia de números en el rango [minimo, maximo) con el paso especificado.
 def generar_secuencia_numerica(minimo, maximo, paso):
@@ -40,7 +40,7 @@ def generar_secuencia_numerica(minimo, maximo, paso):
 print(generar_secuencia_numerica(0, 10, 2))
 print(type(generar_secuencia_numerica(0, 10, 2)))
 
-'''Ejercicio 3
+'''Ejercicio 7
 Finanzas personales
 Crear una función en Python que realice operaciones con arrays utilizando NumPy para analizar las finanzas personales de un estudiante. La función debe recibir dos arrays: uno con los ingresos mensuales de un estudiante durante un año y otro con sus gastos mensuales. La función debe devolver el balance mensual (ingresos - gastos), la suma total de los ingresos, la suma total de los gastos, y el saldo total (ingresos totales - gastos totales) durante todo el año.
 Instrucciones:
