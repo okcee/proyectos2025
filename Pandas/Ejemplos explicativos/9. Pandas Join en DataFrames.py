@@ -1,4 +1,3 @@
-import numpy as np
 import pandas as pd
 
 # Pandas: Join en DataFrames
