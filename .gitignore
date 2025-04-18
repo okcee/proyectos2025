@@ -18,6 +18,7 @@
 # User settings
 **/settings.json
 **/launch.json
+**/tasks.json
 
 # Virtual Enviroments
 .veNumPy
