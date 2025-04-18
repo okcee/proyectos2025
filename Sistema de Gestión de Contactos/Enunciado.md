@@ -30,3 +30,24 @@
 6.  Implementa manejo de excepciones para capturar y manejar errores relacionados con el archivo y las operaciones de contacto.
 
 **Entrega:** Los estudiantes deben entregar el código fuente del programa junto con un archivo de texto que contenga algunos contactos de ejemplo.
+
+Sistema de Gestión de Contactos/ # Raíz del proyecto
+├── GestionAPP.py                          # Contiene la lógica del menú y la interacción principal
+│   ├── agregar un contacto
+│   ├── mostrar todos los contactos
+│   ├── buscar un contacto
+│   └── eliminar un contacto
+├── GestionContactos.py                 # Contiene la clase GestionContactos con los métodos
+│   ├── agregar un contacto
+│   ├── mostrar todos los contactos
+│   ├── buscar un contacto
+│   └── eliminar un contacto
+├── Contacto.py                         # Contiene la clase Contacto
+└── listaContactos.txt
+
+Análisis de la estructura final:  
+- Sistema de Gestión de Contactos/: Define claramente la raíz del proyecto.  
+- GestionAPP.py: Este archivo actuará como el punto de entrada principal de la aplicación. Contendrá la lógica para mostrar el menú al usuario, capturar sus interacciones y coordinar las acciones llamando a los métodos de la clase GestionContactos. Los subpuntos dentro del comentario indican claramente las funcionalidades del menú.  
+- GestionContactos.py: Aquí se definirá la clase GestionContactos, que encapsulará la lógica de negocio para administrar la lista de contactos (agregar, mostrar, buscar, eliminar). Los subpuntos dentro del comentario detallan los métodos que contendrá esta clase.  
+- Contacto.py: Este archivo contendrá la definición de la clase Contacto, que representará la estructura de cada contacto con sus atributos (nombre, número de teléfono, correo electrónico).  
+- listaContactos.txt: Este será el archivo de texto utilizado para guardar y cargar la persistencia de los datos de los contactos. Su ubicación en la raíz del proyecto es adecuada para este tipo de aplicación.  
