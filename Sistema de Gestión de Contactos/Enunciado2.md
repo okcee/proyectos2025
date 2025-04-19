@@ -29,7 +29,7 @@
 5.  Implementa validaciones para asegurar que el formato del correo electrónico es válido y que los campos requeridos no están vacíos.
 6.  Implementa manejo de excepciones para capturar y manejar errores relacionados con el archivo y las operaciones de contacto.
 
-**Entrega:** Los estudiantes deben entregar el código fuente del programa junto con un archivo de texto que contenga algunos contactos de ejemplo.
+**Estructura:** 
 
 Sistema de Gestión de Contactos/ # Raíz del proyecto
 ├── GestionAPP.py                          # Contiene la lógica del menú y la interacción principal
