@@ -29,29 +29,30 @@ Crear una aplicación en Python que simule un sistema de gestión de inventario 
 4.  Implementa un menú que permita al usuario seleccionar una acción.
 5.  Utiliza consultas SQL para realizar las operaciones CRUD en la base de datos.
 6.  Implementa manejo de excepciones para capturar y manejar errores relacionados con la base de datos y las operaciones de inventario.
+---
 
-**Estructura:** 
+**Estructura:**   
 
-Sistema de Gestión de Contactos/ # Raíz del proyecto
-├── GestionInventario.py                          # Contiene la lógica del menú y la interacción principal
-│   ├── agregar un producto
-│   ├── mostrar todos los productos
-│   ├── buscar un producto
-│   ├── actualizar un producto
-│   └── eliminar un producto
-├── gestion_inventario.py                          # Contiene la clase GestionInventario. Implementa operaciones CRUD
-│   ├── agregar un producto
-│   ├── mostrar todos los productos
-│   ├── buscar un producto
-│   ├── actualizar un producto
-│   └── eliminar un producto
-├── producto.py                                    # Contiene la clase Producto 
-│   ├── agregar un producto
-│   ├── mostrar todos los productos
-│   ├── buscar un producto
-│   ├── actualizar un producto
-│   └── eliminar un producto
-├── conexion.py                         # Contiene la clase Conexion, para MySQL
-└── (Tabla en base de datos MySQL)
+Sistema de Gestión de Contactos/ # Raíz del proyecto  
+├── inventarioAPP.py                          # Contiene la lógica del menú y la interacción principal  
+│   ├── agregar un producto  
+│   ├── mostrar todos los productos  
+│   ├── buscar un producto  
+│   ├── actualizar un producto  
+│   └── eliminar un producto  
+├── gestion_inventario.py                     # Contiene la clase GestionInventario. Implementa operaciones CRUD  
+│   ├── agregar un producto  
+│   ├── mostrar todos los productos  
+│   ├── buscar un product  
+│   ├── actualizar un product  
+│   └── eliminar un product  
+├── producto.p  
+│   ├── id de un producto                     # Contiene la clase Producto  
+│   ├── nombre de un producto  
+│   ├── cantidad de un producto  
+│   ├── precio de un producto  
+│   └── categoria de un producto  
+├── conexion.py                               # Contiene la clase Conexion, para MySQL  
+└── inventario_db                             (Tabla en base de datos MySQL)  
 
 Análisis de la estructura final:  
