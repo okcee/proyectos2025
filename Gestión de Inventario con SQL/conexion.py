@@ -4,6 +4,10 @@ import configparser
 import mysql.connector
 from mysql.connector import pooling
 from mysql.connector import Error
+import os
+
+script_dir = os.path.dirname(os.path.abspath(__file__)) # Obtener la ruta absoluta del directorio donde se encuentra este script (conexion.py)
+config_path = os.path.join(script_dir, '.config.ini') # Construir la ruta completa al archivo .config.ini
 
 config = configparser.ConfigParser()
 
@@ -11,10 +15,14 @@ class Conexion:
     _pool = None
 
     try:
-        config.read('.config.ini')
+        archivos_leidos = config.read(config_path)
+        if not archivos_leidos:
+            # Si config.read no encontró o no pudo leer el archivo, lanza un error
+            raise FileNotFoundError(f"No se pudo encontrar o leer el archivo de configuración en: {config_path}")
 
         if 'database' not in config:
-            raise ValueError("La sección 'database' no se encuentra en config.ini")
+            # Este error ahora significa que el archivo se leyó, pero no tiene la sección [database]
+            raise ValueError(f"La sección [database] no se encuentra en {config_path}")
 
         db_config = {
             "host": config['database']['host'],
