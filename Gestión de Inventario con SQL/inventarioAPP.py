@@ -37,8 +37,9 @@ while opcion !=6:
         for producto in productos:
             print(producto)
     elif opcion == 3: # Buscar un producto
+        print("\n--- Buscar Producto por Nombre ---") # Mensaje más descriptivo
         nombre_a_buscar = input("Introduce el nombre del producto que deseas buscar: ")
-        producto = Producto.find_by_name(nombre_a_buscar)
+        producto = GestionInventario.find_by_name(nombre_a_buscar)
         if producto:
             print("\nProducto encontrado:")
             print(f"Nombre: {producto.nombre}, Cantidad: {producto.cantidad}, Precio: {producto.precio}, Categoría: {producto.categoria}")
@@ -55,7 +56,7 @@ while opcion !=6:
     elif opcion == 5: # Eliminar un producto
         id_producto_var = int(input('Ingrese el id del producto a eliminar: '))
         producto = Producto(id=id_producto_var)
-        producto_eliminados = GestionInventario.eliminar(producto)
+        producto_eliminados = GestionInventario.delete(producto)
         print(f'Producto eliminado: {producto_eliminados}')
 else:
     print("Salimos de la aplicación")
