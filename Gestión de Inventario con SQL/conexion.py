@@ -2,21 +2,20 @@
 
 import configparser
 import mysql.connector
-
 from mysql.connector import pooling
 from mysql.connector import Error
 
-config = configparser.ConfigParser()  # Crear un objeto ConfigParser
+config = configparser.ConfigParser()
 
 class Conexion:
-    # Intentar leer el archivo de configuración dentro de la clase
+    _pool = None
+
     try:
-        config.read('.config.ini')  # Leer el archivo de configuración
-        # Verificar si la sección 'database' existe
+        config.read('.config.ini')
+
         if 'database' not in config:
             raise ValueError("La sección 'database' no se encuentra en config.ini")
 
-        # Obtener los datos de la sección 'database'
         db_config = {
             "host": config['database']['host'],
             "user": config['database']['user'],
@@ -24,11 +23,9 @@ class Conexion:
             "database": config['database']['database'],
             "db_port": config['database']['db_port'],
             "pool_size": config['database']['pool_size'],
-            "pool_name": config['database']['pool_name'],
-            "pool": config['database']['pool']
+            "pool_name": config['database']['pool_name']
         }
-        
-        # Asignar los valores a atributos de clase
+
         host = db_config["host"]
         user = db_config["user"]
         password = db_config["password"]
@@ -36,26 +33,25 @@ class Conexion:
         port = int(db_config["db_port"])
         pool_size = int(db_config["pool_size"])
         pool_name = db_config["pool_name"]
-        pool = None # Inicializar pool como None
-    
+
     except FileNotFoundError:
-        print("Error: El archivo config.ini no se encontró.")
+        print("Error: El archivo .config.ini no se encontró en la ubicación esperada.")
         exit()
     except KeyError as e:
-        print(f"Error: Falta la clave '{e}' en la sección 'database' de config.ini.")
+        print(f"Error: Falta la clave '{e}' en la sección 'database' de .config.ini.")
         exit()
     except ValueError as e:
         print(f"Error: {e}")
         exit()
     except Exception as e:
-        print(f"Error inesperado al leer config.ini: {e}")
+        print(f"Error inesperado al leer .config.ini: {e}")
         exit()
-    
+
     @classmethod
     def obtener_pool(cls):
-        if cls.pool is None:  # se crea el objeto pool
+        if cls._pool is None:
             try:
-                cls.pool = pooling.MySQLConnectionPool(
+                cls._pool = pooling.MySQLConnectionPool(
                     pool_name=cls.pool_name,
                     pool_size=cls.pool_size,
                     host=cls.host,
@@ -64,62 +60,61 @@ class Conexion:
                     user=cls.user,
                     password=cls.password,
                 )
-                return cls.pool
+                print(f"Pool '{cls.pool_name}' creado exitosamente.") # Feedback
+                return cls._pool
             except Error as e:
                 print(f'Error al crear el pool: {e}')
-                return None # Retornar None en caso de error
+                cls._pool = None # Asegurar que siga None si falla
+                return None
         else:
-            return cls.pool
+            return cls._pool
 
     @classmethod
     def obtener_conexion(cls):
         pool = cls.obtener_pool()
+        conexion = None # Inicializar
         if pool:
             try:
-                return pool.get_connection()
+                conexion = pool.get_connection()
+                # print("Conexión obtenida del pool.") # Descomentar para depurar
+                return conexion
             except Error as e:
                 print(f"Error al obtener la conexión del pool: {e}")
+                if conexion: # Si se obtuvo parcialmente antes del error
+                    conexion.close()
                 return None
         else:
-            return None
-
-    @classmethod
-    def obtener_cursor(cls):
-        conexion = cls.obtener_conexion()
-        if conexion:
-            return conexion.cursor()
-        else:
+            print("Error: Pool no disponible.")
             return None
 
     @classmethod
     def liberar_conexion(cls, conexion):
         if conexion:
-            conexion.close()
+            try:
+                conexion.close()
+                # print("Conexión liberada al pool.") # Descomentar para depurar
+            except Error as e:
+                print(f"Error al liberar la conexión: {e}")
 
+# Bloque de prueba
 if __name__ == '__main__':
-    # Creamos un objeto pool
     pool = Conexion.obtener_pool()
     if pool:
-        print(pool)
-        conexion1 = pool.get_connection()
-        print(conexion1)
-        conexion2 = pool.get_connection()
-        print(conexion2)
-        conexion3 = pool.get_connection()
-        print(conexion3)
-        conexion4 = pool.get_connection()
-        print(conexion4)
-        conexion5 = pool.get_connection()
-        print(conexion5)
-        Conexion.liberar_conexion(conexion1)
-        print(f'Se ha liberado el objeto conexion1')
-        Conexion.liberar_conexion(conexion2)
-        print(f'Se ha liberado el objeto conexion2')
-        Conexion.liberar_conexion(conexion3)
-        print(f'Se ha liberado el objeto conexion3')
-        Conexion.liberar_conexion(conexion4)
-        print(f'Se ha liberado el objeto conexion4')
-        Conexion.liberar_conexion(conexion5)
-        print(f'Se ha liberado el objeto conexion5')
+        print(f"Pool obtenido: {pool}")
+        conexiones = []
+        for i in range(Conexion.pool_size): # Intentar obtener hasta el tamaño del pool
+            print(f"Intentando obtener conexión {i+1}...")
+            conn = Conexion.obtener_conexion()
+            if conn:
+                print(f"Conexión {i+1} obtenida: {conn.connection_id}")
+                conexiones.append(conn)
+            else:
+                print(f"Fallo al obtener conexión {i+1}")
+                break
+
+        print("\nLiberando conexiones...")
+        for i, conn in enumerate(conexiones):
+            Conexion.liberar_conexion(conn)
+            print(f'Se ha liberado el objeto conexion {i+1} (ID: {conn.connection_id})')
     else:
-        print("No se pudo crear el pool")
+        print("No se pudo crear u obtener el pool")

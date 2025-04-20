@@ -56,3 +56,7 @@ Sistema de Gestión de Contactos/ # Raíz del proyecto
 └── inventario_db                             (Tabla en base de datos MySQL)  
 
 Análisis de la estructura final:  
+- Estructura: La estructura del proyecto (separación en inventarioAPP.py, gestion_inventario.py, producto.py, conexion.py) es buena y sigue las indicaciones del enunciado. Separa correctamente la interfaz de usuario, la lógica de acceso a datos (DAO), el modelo de datos y la conexión.
+- Tecnología: Utiliza mysql-connector-python y se conecta a MySQL, como se pide. Implementa un pool de conexiones en conexion.py, lo cual es eficiente.
+- CRUD: Implementa las operaciones CRUD (Crear, Leer, Actualizar, Eliminar).
+- Menú: inventarioAPP.py contiene el menú interactivo.

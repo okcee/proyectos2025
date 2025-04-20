@@ -4,9 +4,20 @@ class Producto:
     def __init__(self, id=None, nombre=None, cantidad=None, precio=None, categoria=None):
         self.id = id
         self.nombre = nombre
-        self.cantidad = cantidad
-        self.precio = precio
         self.categoria = categoria
-    
-    def __str__(self): # Para poder imprimir en cualquier momento el estado de este objeto, que son los valores de los atributos de nuestro objeto
-        return (f'Id: {self.id}, Nombre: {self.nombre}, Apellido: {self.cantidad}, Membresia: {self.precio}, Categoría: {self.categoria}')
+
+        try:
+            self.cantidad = int(cantidad) if cantidad is not None else None
+        except (ValueError, TypeError):
+            print(f"Advertencia: Cantidad '{cantidad}' no es un número entero válido. Se establecerá como None.")
+            self.cantidad = None # Asignar 0 o lanzar excepción
+
+        try:
+            self.precio = float(precio) if precio is not None else None
+        except (ValueError, TypeError):
+            print(f"Advertencia: Precio '{precio}' no es un número válido. Se establecerá como None.")
+            self.precio = None # Asignar 0.0 o lanzar excepción
+
+    def __str__(self):
+        return (f'Id: {self.id}, Nombre: {self.nombre}, Cantidad: {self.cantidad}, '
+                f'Precio: {self.precio}, Categoría: {self.categoria}')
