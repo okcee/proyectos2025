@@ -104,24 +104,24 @@ class Conexion:
                 print(f"Error al liberar la conexión: {e}")
 
 # Bloque de prueba
-# if __name__ == '__main__':
-#     pool = Conexion.obtener_pool()
-#     if pool:
-#         print(f"Pool obtenido: {pool}")
-#         conexiones = []
-#         for i in range(Conexion.pool_size): # Intentar obtener hasta el tamaño del pool
-#             print(f"Intentando obtener conexión {i+1}...")
-#             conn = Conexion.obtener_conexion()
-#             if conn:
-#                 print(f"Conexión {i+1} obtenida: {conn.connection_id}")
-#                 conexiones.append(conn)
-#             else:
-#                 print(f"Fallo al obtener conexión {i+1}")
-#                 break
+if __name__ == '__main__':
+    pool = Conexion.obtener_pool()
+    if pool:
+        print(f"Pool obtenido: {pool}")
+        conexiones = []
+        for i in range(Conexion.pool_size): # Intentar obtener hasta el tamaño del pool
+            print(f"Intentando obtener conexión {i+1}...")
+            conn = Conexion.obtener_conexion()
+            if conn:
+                print(f"Conexión {i+1} obtenida: {conn.connection_id}")
+                conexiones.append(conn)
+            else:
+                print(f"Fallo al obtener conexión {i+1}")
+                break
 
-#         print("\nLiberando conexiones...")
-#         for i, conn in enumerate(conexiones):
-#             Conexion.liberar_conexion(conn)
-#             print(f'Se ha liberado el objeto conexion {i+1} (ID: {conn.connection_id})')
-#     else:
-#         print("No se pudo crear u obtener el pool")
+        print("\nLiberando conexiones...")
+        for i, conn in enumerate(conexiones):
+            Conexion.liberar_conexion(conn)
+            print(f'Se ha liberado el objeto conexion {i+1} (ID: {conn.connection_id})')
+    else:
+        print("No se pudo crear u obtener el pool")
