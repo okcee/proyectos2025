@@ -43,6 +43,7 @@ plt.xlabel("Eje x") # Nombre para la primera lista de valores Eje x.
 plt.ylabel("Eje y") # Nombre para la segunda lista de valores. Eje y.
 
 plt.title("Gráfico 3: Representar dos gráficos: uno encima del otro")
+plt.grid(True) # Añadir cuadrícula para visualizarlo mejor
 plt.show()
 plt.close()
 

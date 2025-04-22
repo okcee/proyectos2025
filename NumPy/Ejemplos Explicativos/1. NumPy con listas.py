@@ -1,4 +1,7 @@
 import numpy as np
+
+# numpy.linspace(start, stop, num=50, endpoint=True, retstep=False, dtype=None, axis=0)
+
 #Lista de 1 dimensión
 lista = [1, 2, 3, 4, 5]
 array_numpy = np.array(lista)
