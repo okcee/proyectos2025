@@ -1,6 +1,6 @@
+from matplotlib import pyplot as plt
 import seaborn as sns
-import matplotlib.pyplot as plt
-import pandas as pd
+import numpy as np
 
 propinas = sns.load_dataset('tips') # Cargamos un dataset que viene con la librería para hacer pruebas
 print("Los primeros 10 elementos del dataset son: ")
@@ -19,5 +19,51 @@ print(propinas.head(10))
 9       14.78  3.23    Male     No  Sun  Dinner     2
 '''
 
-# Seaborn: Gráficos para categorías
+# Seaborn: Gráficos para columnas de tipo categorías
+# barplot
+sns.barplot(x='sex', y='total_bill', data=propinas)
+plt.title("Gráfico de género (masculino o Femenino) en función de las facturas")
+plt.show()
 
+# countplot
+sns.countplot(x='sex', data=propinas)
+plt.title("Gráfico de cantidad de personas según género (masculino o Femenino)")
+plt.show()
+
+# boxplot
+sns.boxplot(x='day', y='total_bill', data=propinas)
+plt.title("Diagrama de caja según día")
+plt.show() # Caja según día
+sns.boxplot(x='day', y='total_bill', data=propinas, hue='smoker') # Se le añade otro atributo más
+plt.title("Diagrama de caja según día y en comparando los no fumadores con los fumadores")
+plt.show()
+
+# violinplot
+sns.violinplot(x='day', y='total_bill', data=propinas)
+plt.title("Diagrama tipo violín factura según el día")
+plt.show()
+sns.violinplot(x='day', y='total_bill', data=propinas, hue='smoker', split=True) # Se le añade otro atributo más y se juntan
+plt.title("Diagrama tipo violín según día y comparando los no fumadores con los fumadores juntado")
+plt.show()
+
+# stripplot
+sns.violinplot(x='day', y='total_bill', data=propinas)
+plt.title("Diagrama tipo strip de puntos de facturación según día")
+plt.show()
+sns.violinplot(x='day', y='total_bill', data=propinas, hue='sex')
+plt.title("Diagrama tipo strip de puntos de facturación según día comparado por sexo")
+plt.show()
+
+# swarmplot Gráfico de puntos, pero distribuídos para que no se solapen
+sns.swarmplot(x='day', y='total_bill', data=propinas)
+plt.title("Diagrama tipo swarm de puntos de facturación según día")
+plt.show()
+sns.swarmplot(x='day', y='total_bill', data=propinas, hue='sex')
+plt.title("Diagrama tipo swarm de puntos de facturación según día comparado por sexo")
+plt.show()
+
+# Juntar dos gráficos en una figura
+sns.violinplot(x='day', y='total_bill', data=propinas)
+sns.swarmplot(x='day', y='total_bill', data=propinas)
+plt.title("Dos diagramas juntos")
+plt.show()

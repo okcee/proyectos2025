@@ -1,11 +1,11 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
-import pandas as pd
+
 
 propinas = sns.load_dataset('tips') # Cargamos un dataset que viene con la librería para hacer pruebas
 print("Los primeros 10 elementos del dataset son: ")
 print(propinas.head(10))
-'''
+''' Dataset
    total_bill   tip     sex smoker  day    time  size
 0       16.99  1.01  Female     No  Sun  Dinner     2
 1       10.34  1.66    Male     No  Sun  Dinner     3
