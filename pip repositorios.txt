@@ -1,5 +1,5 @@
 Actualizar pip
-pip install --upgrade 
+pip install --upgrade pip
 
 Instalar en el entorno virtual
 pip install virtualenv
@@ -11,5 +11,5 @@ Instalar Formatting
 pip install Black
 
 Instalar analisis de datos: Repositorios
-pip install Numpy Pandas Matplotlib Seaborn Plotly Cuffinks
+pip install Numpy Pandas Matplotlib Seaborn Plotly Cufflinks
 
