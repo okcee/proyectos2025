@@ -27,7 +27,10 @@ layout = go.Layout(
 fig = go.Figure(data=[trace1, trace2], layout=layout)
 
 # Guardar el gráfico como un archivo HTML y abrirlo en el navegador predeterminado
+# Por defecto, se guardará en el mismo directorio donde se encuentra tu script Python
 plot(fig, filename='grafico_interactivo.html', auto_open=True)
+# Se puede especificar la ruta donde guardar el archivo "S:\_proyectos2025\Plotly\grafico_interactivo.html"
+# plot(fig, filename='C:/ruta/completa/grafico_interactivo.html', auto_open=True)
 
 '''
 3. Explicación del código
