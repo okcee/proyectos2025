@@ -1,0 +1,15 @@
+Actualizar pip
+pip install --upgrade 
+
+Instalar en el entorno virtual
+pip install virtualenv
+
+Instalar Linters
+pip install Flake8 y Bandit
+
+Instalar Formatting
+pip install Black
+
+Instalar analisis de datos: Repositorios
+pip install Numpy Pandas Matplotlib Seaborn Plotly Cuffinks
+
