@@ -26,5 +26,3 @@ dataframe.plot()
 plt.close()
 
 dataframe.iplot(color='gold')
-plt.show()
-plt.close()

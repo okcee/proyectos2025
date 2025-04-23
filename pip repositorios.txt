@@ -11,5 +11,5 @@ Instalar Formatting
 pip install Black
 
 Instalar analisis de datos: Repositorios
-pip install Numpy Pandas Matplotlib Seaborn Plotly Cufflinks
+pip install Numpy Pandas Matplotlib Seaborn Plotly Cufflinks nbformat 
 
