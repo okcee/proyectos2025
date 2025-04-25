@@ -1,3 +1,5 @@
+Paquetes análisis de datos
+pip install Numpy Pandas Matplotlib Seaborn Plotly Cufflinks nbformat chart_studio
 
 Paquete machine learning
 pip install scikit-learn
