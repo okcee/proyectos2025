@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
+
 
 ''' Ejercicio de codificación 13
 Regresión Lineal con Datos de Ventas
@@ -109,16 +109,8 @@ print(f"Victorias predichas para {test_player.name}: {predicted:.2f}")
 🧪 Salida esperada
 Victorias predichas para TestPlayer: 22.50
 '''
-players = [
-    Player("Alice", 40, 50, 6, 20),
-    Player("Bob", 30, 35, 4, 10),
-    Player("Charlie", 50, 60, 7, 25),
-    Player("Diana", 20, 25, 2, 5),
-    Player("Eve", 60, 70, 8, 30)
-]
-
 class Player:
-    def __init__ (self, name, avg_session_time, avg_actions_per_min, avg_kills_per_session, victories=True): # Datos de entrada, Victories=True porque no es obligatorio conocerlo como dato de entrada
+    def __init__ (self, name, avg_session_time, avg_actions_per_min, avg_kills_per_session, victories=None): # Datos de entrada, Victories=True porque no es obligatorio conocerlo como dato de entrada
         self.name = name
         self.avg_session_time = avg_session_time
         self.avg_actions_per_min = avg_actions_per_min
@@ -134,41 +126,77 @@ class PlayerDataset:
     def get_feature_matrix(self):
         return [player.to_features() for player in self.players_list] # Devuelve una lista[], dónde itera cada objeto "player" dentro de "self.players_list" y, llama al método "to_features()" para obtener las características del mismo y agregar a la lista los valores de cada jugador a lista definidas en el método.
     def get_target_vector(self):
-        return [player.victories for player in self.players_list] # Devuelve una lista[], dónde itera cada objeto "player" dentro de "self.players_list" y, llama al método "victories()" para obtener las características del mismo y agregar a la lista los valores de cada jugador a lista definidas en el método.
+        return [player.victories for player in self.players_list] # Devuelve una lista[], dónde itera cada objeto "player" dentro de "self.players_list" y, llama al atributo "victories" para obtener las características del mismo y agregar a la lista los valores de cada jugador a lista definidas en el método.
 
 class VictoryPredictor:
-    def __init__ (self, LinearRegression):
-        self.LinearRegression = LinearRegression
+    def __init__ (self):
+        self.model = LinearRegression()
     def train(self, dataset: PlayerDataset):
         X = dataset.get_feature_matrix()
         Y = dataset.get_target_vector()
-        X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.4, random_state=42)
-        lrm = LinearRegression() # Creamos una variable que será una instancia de LinearRegression()
-        lrm.fit(X_train, Y_train) # Método fit para el entrenamiento
-        self.model = lrm
-        return lrm
+        self.model.fit(X, Y) # Entrenar con todos los datos X, Y
+        # El método train modifica el estado interno (entrena self.model), no necesita devolver nada.
     def predict(self, player: Player):
-        
-    
-    
-    
-    
-# Opcional: podrías querer retornar el modelo entrenado o guardarlo como atributo
-        # self.model = lrm
-        # return lrm
+        caracteristicas_jugador = player.to_features()
+        datos_para_predecir = [caracteristicas_jugador]
+        predicciones = self.model.predict(datos_para_predecir) # Para sacar el valor objetivo de cada una de ellas
+        valor_predicho = predicciones[0]
+        return valor_predicho
 
+players = [
+    Player("Alice", 40, 50, 6, 20),
+    Player("Bob", 30, 35, 4, 10),
+    Player("Charlie", 50, 60, 7, 25),
+    Player("Diana", 20, 25, 2, 5),
+    Player("Eve", 60, 70, 8, 30)
+]
 
-# dataset = PlayerDataset(players)
-# predictor = VictoryPredictor()
-# predictor.train(dataset)
+dataset = PlayerDataset(players)
+predictor = VictoryPredictor()
+predictor.train(dataset)
 
-# test_player = Player("TestPlayer", 45, 55, 5)
-# predicted = predictor.predict(test_player)
-# print(f"Victorias predichas para {test_player.name}: {predicted:.2f}")
-
-# X = [self.avg_session_time, self.avg_actions_per_min, self.avg_kills_per_session]
+test_player = Player("TestPlayer", 45, 55, 5)
+predicted = predictor.predict(test_player)
+print(f"Victorias predichas para {test_player.name}: {predicted:.2f}")
 
 # --------------------------------------- #
 ''' Ejercicio de codificación 15
-
+Predecir ingresos de una aplicación
+📘 Enunciado del ejercicio:
+Eres parte de un equipo de analistas de datos en una empresa tecnológica que desarrolla aplicaciones móviles. Te han proporcionado un pequeño conjunto de datos con información sobre diferentes apps que ya están publicadas, y tu tarea es crear un modelo de regresión lineal para predecir los ingresos estimados de una nueva app.
+📊 Datos disponibles por app:
+app_name: Nombre de la app
+downloads: Número de descargas (en miles)
+rating: Valoración media de los usuarios (de 1 a 5)
+size_mb: Tamaño de la app (en MB)
+reviews: Número de valoraciones escritas
+revenue: Ingresos generados (en miles de dólares) → variable a predecir
+📌 Tareas que debes realizar:
+Crea una clase App que represente cada app con sus atributos.
+Crea una clase RevenuePredictor que:
+Reciba una lista de objetos App.
+Extraiga las características relevantes para entrenar un modelo.
+Entrene un modelo de regresión lineal para predecir los ingresos (revenue).
+Permita predecir los ingresos de una nueva app con datos similares.
+Entrena el modelo con los datos proporcionados (puedes usar una lista de ejemplo en el código).
+Prueba el modelo prediciendo los ingresos estimados de una nueva app ficticia.
+🧪 Ejemplo de uso
+# Datos simulados de entrenamiento
+training_apps = [
+    App("TaskPro", 200, 4.2, 45.0, 1800, 120.0),
+    App("MindSpark", 150, 4.5, 60.0, 2100, 135.0),
+    App("WorkFlow", 300, 4.1, 55.0, 2500, 160.0),
+    App("ZenTime", 120, 4.8, 40.0, 1700, 140.0),
+    App("FocusApp", 180, 4.3, 52.0, 1900, 130.0),
+    App("BoostApp", 220, 4.0, 48.0, 2300, 145.0),
+]
+# Creamos y entrenamos el predictor
+predictor = RevenuePredictor()
+predictor.fit(training_apps)
+# Nueva app para predecir
+new_app = App("FocusMaster", 250, 4.5, 50.0, 3000)
+predicted_revenue = predictor.predict(new_app)
+print(f"Ingresos estimados para {new_app.name}: ${predicted_revenue:.2f}K")
+Salida esperada
+Ingresos estimados para FocusMaster: $207.59K
 '''
