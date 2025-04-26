@@ -1,4 +1,4 @@
-'''
+''' REGRESIÍN LINEAL
 La regresión lineal es un algoritmo de aprendizaje supervisado, para datos estructurados.
 la regresión lineal es una aproximación para modelar la relación entre una variable escalar dependiente "y" y una o más variables explicativas "X".
 La idea es dibujar una recta que indicará la tendencia del conjuntoi de datos.
