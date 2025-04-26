@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy as np
+
 from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
 
 ''' Ejercicio de codificación 13
 Regresión Lineal con Datos de Ventas
@@ -64,6 +66,7 @@ print("Modelo Entrenado:", modelo_entrenado) # Muestra el objeto del modelo
 print("\nEstimaciones de Ventas para nuevos datos:")
 print(estimaciones_ventas)
 
+# --------------------------------------- #
 ''' Ejercicio de codificación 14
 Predecir el rendimiento de un jugador
 📝 Enunciado del ejercicio
@@ -106,13 +109,66 @@ print(f"Victorias predichas para {test_player.name}: {predicted:.2f}")
 🧪 Salida esperada
 Victorias predichas para TestPlayer: 22.50
 '''
+players = [
+    Player("Alice", 40, 50, 6, 20),
+    Player("Bob", 30, 35, 4, 10),
+    Player("Charlie", 50, 60, 7, 25),
+    Player("Diana", 20, 25, 2, 5),
+    Player("Eve", 60, 70, 8, 30)
+]
+
+class Player:
+    def __init__ (self, name, avg_session_time, avg_actions_per_min, avg_kills_per_session, victories=True): # Datos de entrada, Victories=True porque no es obligatorio conocerlo como dato de entrada
+        self.name = name
+        self.avg_session_time = avg_session_time
+        self.avg_actions_per_min = avg_actions_per_min
+        self.avg_kills_per_session = avg_kills_per_session
+        self.victories = victories
+    
+    def to_features(self): # Devuelve los datos de los jugadores que se van a usar en la predicción de victorias
+        return [self.avg_session_time, self.avg_actions_per_min, self.avg_kills_per_session]
+
+class PlayerDataset:
+    def __init__ (self, players_list):
+        self.players_list = players_list
+    def get_feature_matrix(self):
+        return [player.to_features() for player in self.players_list] # Devuelve una lista[], dónde itera cada objeto "player" dentro de "self.players_list" y, llama al método "to_features()" para obtener las características del mismo y agregar a la lista los valores de cada jugador a lista definidas en el método.
+    def get_target_vector(self):
+        return [player.victories for player in self.players_list] # Devuelve una lista[], dónde itera cada objeto "player" dentro de "self.players_list" y, llama al método "victories()" para obtener las características del mismo y agregar a la lista los valores de cada jugador a lista definidas en el método.
+
+class VictoryPredictor:
+    def __init__ (self, LinearRegression):
+        self.LinearRegression = LinearRegression
+    def train(self, dataset: PlayerDataset):
+        X = dataset.get_feature_matrix()
+        Y = dataset.get_target_vector()
+        X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.4, random_state=42)
+        lrm = LinearRegression() # Creamos una variable que será una instancia de LinearRegression()
+        lrm.fit(X_train, Y_train) # Método fit para el entrenamiento
+        self.model = lrm
+        return lrm
+    def predict(self, player: Player):
+        
+    
+    
+    
+    
+# Opcional: podrías querer retornar el modelo entrenado o guardarlo como atributo
+        # self.model = lrm
+        # return lrm
 
 
+# dataset = PlayerDataset(players)
+# predictor = VictoryPredictor()
+# predictor.train(dataset)
 
+# test_player = Player("TestPlayer", 45, 55, 5)
+# predicted = predictor.predict(test_player)
+# print(f"Victorias predichas para {test_player.name}: {predicted:.2f}")
 
+# X = [self.avg_session_time, self.avg_actions_per_min, self.avg_kills_per_session]
 
-
-
+# --------------------------------------- #
 ''' Ejercicio de codificación 15
 
 '''
