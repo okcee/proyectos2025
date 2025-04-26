@@ -1,5 +1,5 @@
 import pandas as pd
-import numpy as np
+from typing import List
 
 from sklearn.linear_model import LinearRegression
 
@@ -200,6 +200,7 @@ print(f"Ingresos estimados para {new_app.name}: ${predicted_revenue:.2f}K")
 Salida esperada
 Ingresos estimados para FocusMaster: $207.59K
 '''
+
 # 1. Crea una clase App que represente cada app con sus atributos
 class App:
     def __init__ (self, app_name, download, rating, size_mb, reviews, revenue=None):
@@ -211,18 +212,60 @@ class App:
         self.revenue = revenue
 # 2. Crea una clase RevenuePredictor que:
 class RevenuePredictor:
-    # Reciba una lista de objetos App.
-    def __init__ (self, lista_app):
-        self.lista_app = lista_app
-    # Extraiga las características relevantes para entrenar un modelo.
-    def get_feature_matrix (self, app):
-        self.app = app
-        x_char = [self.app_name, self.download, self.rating, self.size_mb, self.reviews]
-        return [x_char for app in self.App]
-    def get_target_vector (self, app):
-        self.app = app
-        y_char = [self.revenue]
-        return [y_char for app in self.App]
-    # Entrene un modelo de regresión lineal para predecir los ingresos (revenue)
-    
-    # Permita predecir los ingresos de una nueva app con datos similares
+    # 2.1. Reciba una lista de objetos App.
+    def __init__ (self): # Inicia el modelo de predicción
+        self.model = LinearRegression()
+        self.feature_names = ['download', 'rating', 'size_mb', 'reviews']
+    def fit(self, training_apps: List[App]): # El método fit recibe la lista de apps para entrenar
+        # 2.2. Extraiga las características relevantes para entrenar un modelo.
+        # Extraer características (X)
+        X_train = []
+        for app in training_apps:
+            # Seleccionamos los atributos numéricos relevantes para la predicción
+            features = [
+                app.download,
+                app.rating,
+                app.size_mb,
+                app.reviews
+            ]
+            X_train.append(features)
+        # Extraer objetivo (Y)
+        Y_train = [app.revenue for app in training_apps] # Creamos una lista simple con los ingresos de cada app
+        # 2.3. Entrene un modelo de regresión lineal para predecir los ingresos (revenue)
+        # self.model ya fue inicializado en __init__, ahora entrenamos el modelo
+        self.model.fit(X_train, Y_train) # El método fit modifica el estado interno (entrena self.model), no necesita devolver nada explícitamente.
+    def predict(self, app_to_predict: App):
+        # 2.4. Permita predecir los ingresos de una nueva app con datos similares.
+        # Extraer las características de la nueva app en el mismo orden
+        features = [
+            app_to_predict.download,
+            app_to_predict.rating,
+            app_to_predict.size_mb,
+            app_to_predict.reviews
+        ]
+        # Scikit-learn espera una entrada 2D (matriz), incluso para una sola predicción
+        X_new = [features]
+        predicted_revenue = self.model.predict(X_new) # Realizar la predicción
+        return predicted_revenue[0]
+
+# 3. Entrena el modelo con los datos proporcionados (puedes usar una lista de ejemplo en el código)
+# Datos simulados de entrenamiento
+training_apps = [
+    App("TaskPro", 200, 4.2, 45.0, 1800, 120.0),
+    App("MindSpark", 150, 4.5, 60.0, 2100, 135.0),
+    App("WorkFlow", 300, 4.1, 55.0, 2500, 160.0),
+    App("ZenTime", 120, 4.8, 40.0, 1700, 140.0),
+    App("FocusApp", 180, 4.3, 52.0, 1900, 130.0),
+    App("BoostApp", 220, 4.0, 48.0, 2300, 145.0),
+]
+
+# Creamos y entrenamos el predictor
+predictor = RevenuePredictor()
+predictor.fit(training_apps) # Pasamos la lista de apps aquí
+
+# 4. Prueba el modelo prediciendo los ingresos estimados de una nueva app ficticia.
+# Nueva app para predecir (sin revenue)
+new_app = App("FocusMaster", 250, 4.5, 50.0, 3000) # No necesita revenue
+predicted_revenue = predictor.predict(new_app)
+
+print(f"Ingresos estimados para {new_app.app_name}: ${predicted_revenue:.2f}K")
