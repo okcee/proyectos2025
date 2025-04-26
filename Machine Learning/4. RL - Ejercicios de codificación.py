@@ -200,3 +200,29 @@ print(f"Ingresos estimados para {new_app.name}: ${predicted_revenue:.2f}K")
 Salida esperada
 Ingresos estimados para FocusMaster: $207.59K
 '''
+# 1. Crea una clase App que represente cada app con sus atributos
+class App:
+    def __init__ (self, app_name, download, rating, size_mb, reviews, revenue=None):
+        self.app_name= app_name
+        self.download = download
+        self.rating = rating
+        self.size_mb = size_mb
+        self.reviews = reviews
+        self.revenue = revenue
+# 2. Crea una clase RevenuePredictor que:
+class RevenuePredictor:
+    # Reciba una lista de objetos App.
+    def __init__ (self, lista_app):
+        self.lista_app = lista_app
+    # Extraiga las características relevantes para entrenar un modelo.
+    def get_feature_matrix (self, app):
+        self.app = app
+        x_char = [self.app_name, self.download, self.rating, self.size_mb, self.reviews]
+        return [x_char for app in self.App]
+    def get_target_vector (self, app):
+        self.app = app
+        y_char = [self.revenue]
+        return [y_char for app in self.App]
+    # Entrene un modelo de regresión lineal para predecir los ingresos (revenue)
+    
+    # Permita predecir los ingresos de una nueva app con datos similares
