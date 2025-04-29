@@ -282,7 +282,7 @@ class PlayerMatchData:
         self.healing_done = healing_done
         self.objective_time = objective_time
         self.won = won
-    def to_dict(self):
+    def to_dict(self, include_won=False):
         data_dict = {
             'kills': self.kills,
             'deaths': self.deaths,
@@ -292,6 +292,9 @@ class PlayerMatchData:
             'healing_done': self.healing_done,
             'objective_time': self.objective_time
         }
+        if include_won and self.won is not None:
+            data_dict['won'] = self.won
+        return data_dict
         return data_dict
 
 def generate_synthetic_data(n=100):
@@ -300,9 +303,54 @@ def generate_synthetic_data(n=100):
         kills = np.random.poisson(5)
         deaths = np.random.poisson(3)
         assists = np.random.poisson(2)
-        damage_dealt = kills * 300 + np.random.normal(0, 100)
-        damage_received = deaths * 400 + np.random.normal(0, 100)
+        # Es buena práctica asegurarse de que el daño no sea negativo
+        damage_dealt = max(0, kills * 300 + np.random.normal(0, 100))
+        damage_received = max(0, deaths * 400 + np.random.normal(0, 100))
         healing_done = np.random.randint(0, 301)
         objective_time = np.random.randint(0, 121)
         won = 1 if damage_dealt > damage_received and kills > deaths else 0
         
+        match_instance = PlayerMatchData( # 1. Crea una *instancia* de PlayerMatchData con los valores generados
+            kills=kills,
+            deaths=deaths,
+            assists=assists,
+            damage_dealt=damage_dealt,
+            damage_received=damage_received,
+            healing_done=healing_done,
+            objective_time=objective_time,
+            won=won
+        )
+        data.append(match_instance) # 2. *Añade* la instancia creada a la lista 'data'
+    return data # 3. Devuelve la lista completa *después* de que el bucle haya terminado
+
+class VictoryPredictor:
+    def __init__ (self):
+        self.model = LogisticRegression()
+        self.feature_names = None
+    def train(self, data: list[PlayerMatchData]):
+        list_of_dicts = [player.to_dict() for player in data]
+        # --- Convertir a DataFrame ---
+        X_df = pd.DataFrame(list_of_dicts)
+        self.feature_names = X_df.columns.tolist()
+        Y = [player.won for player in data]
+        self.model.fit(X_df, Y)
+    def predict(self, player: PlayerMatchData):
+        if self.feature_names is None:
+            raise RuntimeError("El modelo debe ser entrenado ('train') antes de hacer predicciones.")
+        caracteristicas_jugador_dict = player.to_dict()
+        datos_para_predecir = [caracteristicas_jugador_dict]
+        X_df = pd.DataFrame(datos_para_predecir, columns=self.feature_names)
+        predicciones = self.model.predict(X_df)
+        valor_predicho = predicciones[0]
+        return int(valor_predicho)
+
+# Crear datos de entrenamiento
+training_data = generate_synthetic_data(150)
+# Entrenar modelo
+predictor = VictoryPredictor()
+predictor.train(training_data)
+# Crear jugador de prueba
+test_player = PlayerMatchData(8, 2, 3, 2400, 800, 120, 90, None)
+# Predecir si ganará
+prediction = predictor.predict(test_player)
+print(f"¿El jugador ganará? {'Sí' if prediction == 1 else 'No'}")
