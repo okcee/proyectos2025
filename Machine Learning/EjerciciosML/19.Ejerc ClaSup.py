@@ -115,3 +115,47 @@ except ValueError as e:
     print(f" - Columnas esperadas: {modelo_knn.feature_names_in_}")
     print(f" - Columnas recibidas: {nuevas_muestras.columns.tolist()}")
     print(f" - Error original: {e}")
+
+
+import pandas as pd
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.datasets import load_iris
+
+def knn_clasificacion(datos: pd.DataFrame, k: int = 3) -> KNeighborsClassifier:
+    """
+    Entrena un modelo K-Nearest Neighbors para clasificación.
+    Args:
+        datos (pd.DataFrame): DataFrame que contiene las características y la columna objetivo 'Especies'.
+        k (int): Número de vecinos a considerar.
+    Returns:
+        KNeighborsClassifier: El modelo KNN entrenado.
+    """
+    features = datos.drop('species', axis=1).columns.tolist()
+    X = datos[features]
+    y = datos['species']
+    
+    modelo = KNeighborsClassifier(n_neighbors=k)
+    modelo.fit(X, y)
+    
+    return modelo
+
+# Cargar los datos de Iris desde sklearn
+iris = load_iris()
+data_iris = pd.DataFrame(data=iris.data, columns=iris.feature_names)
+data_iris['species'] = iris.target_names[iris.target]
+
+# Usar la función para entrenar el modelo
+modelo_knn = knn_clasificacion(data_iris, k=3)
+
+# Nuevas muestras para clasificación
+nuevas_muestras = pd.DataFrame({
+    'sepal length (cm)': [5.1, 6.0, 4.4],
+    'sepal width (cm)': [3.5, 2.9, 3.2],
+    'petal length (cm)': [1.4, 4.5, 1.3],
+    'petal width (cm)': [0.2, 1.5, 0.2]
+})
+
+# Clasificación para nuevas muestras
+estimaciones_clasificacion = modelo_knn.predict(nuevas_muestras)
+print("\nEstimaciones de Clasificación:")
+print(estimaciones_clasificacion)

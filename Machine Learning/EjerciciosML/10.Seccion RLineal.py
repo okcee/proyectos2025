@@ -3,7 +3,6 @@ from typing import List
 
 from sklearn.linear_model import LinearRegression
 
-
 ''' Ejercicio de codificación 13
 Regresión Lineal con Datos de Ventas
 Supongamos que tienes un conjunto de datos que contiene información sobre las ventas de una tienda y la cantidad de dinero que se gastó en publicidad en diferentes medios (por ejemplo, televisión, radio y periódico).
