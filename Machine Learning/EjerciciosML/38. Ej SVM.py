@@ -37,7 +37,6 @@ PM2.5: 22, PM10: 30, O3: 50, NO2: 35
 import numpy as np
 from sklearn.svm import SVC
 
-
 # Clase que representa una muestra de aire con características numéricas
 class AirSample:
     def __init__(self, pm25, pm10, o3, no2, quality=None):
@@ -73,7 +72,6 @@ class AirDataGenerator:
             samples.append(AirSample(pm25, pm10, o3, no2, quality))
         return samples
 
-
 # Clase para entrenar un clasificador usando SVM
 class AirQualityClassifier:
     def __init__(self):
@@ -87,12 +85,12 @@ class AirQualityClassifier:
     def predict(self, sample):
         return self.model.predict([sample.to_vector()])[0]
 
-
 # Clase de ejemplo para ejecutar el sistema de clasificación
 class AirQualityExample:
     def run(self):
-        # Generar 200 muestras aleatorias
-        generator = AirDataGenerator(200)
+        # Generar nº muestras aleatorias
+        np.random.seed(42)
+        generator = AirDataGenerator(num_samples=1000) # Aumentado de 200 a 1000
         samples = generator.generate()
 
         # Entrenar el modelo
@@ -112,7 +110,6 @@ class AirQualityExample:
             print("✅ Predicción de calidad: Saludable ✅")
         else:
             print("❌ Predicción de calidad: Contaminado ❌")
-
 
 # Ejecutar el ejemplo
 if __name__ == "__main__":
