@@ -1,10 +1,9 @@
 # Importamos las librerías necesarias
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
+from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import classification_report, confusion_matrix
+
+import pandas as pd
 
 ''' Árboles de decisión en Machine Learning
 Un árbol de decisión es un modelo de predicción utilizado en diversos ámbitos que van desde la inteligencia artificial hasta la economía
