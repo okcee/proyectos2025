@@ -41,3 +41,4 @@ Salida esperada
 🍎 La fruta predicha para peso=140g y tamaño=18cm es: Plátano
 '''
 
+Resuelve en un script python el ejercicio 48. Ej Machine Learning.py Crea el código limpio y con comentarios que sea compatible con el entorno de udemy No es necesario explicaciones, solo el script para copiar
