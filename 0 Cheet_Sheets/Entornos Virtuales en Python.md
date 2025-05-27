@@ -60,6 +60,8 @@ virtualenv -p C:/Users/Okcee/miniconda3/python.exe VirtENV
 ```
 El comando para instalar la última versión de pip es:
 ```bash
+python.exe -m pip install --upgrade pip
+
 python -m pip install --upgrade pip
 ```
 Comando actualizar:

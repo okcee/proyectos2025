@@ -1,0 +1,45 @@
+
+Crea un archivo en formato markdown (.md) con información de manera clara y concisa, de lo que es ..., su funcionamiento y su sintaxis completa.
+**REQUISITOS IMPORTANTES:**
+- "Usa un único bloque de código Markdown completo, comenzando con markdown y cerrando con el mismo."
+- "Todo el contenido debe estar dentro del mismo bloque, incluyendo explicaciones, fragmentos de código y etiquetas HTML si las hay."
+- "Usa sintaxis Markdown estándar y legible."
+- "Si hay fórmulas matemáticas, utiliza notación LaTeX con el símbolo `$`."
+- "Para código Python, HTML o similar, no uses triple acento grave para los ejemplos; usa indentación o comillas simples para evitar salir de Markdown. Mantén todo en formato Markdown sin que se cierre tras los bloques de código. Simula los bloques si es necesario."
+
+FORMATO 1
+
+Información básica de lo que es, su funcionamiento y su sintaxis completa, de manera clara y concisa en formato **Markdown puro**, específicamente diseñado para ser copiado y pegado directamente en un archivo Markdown.
+**REQUISITOS IMPORTANTES:**
+- Usa un **único bloque de código Markdown completo**, comenzando con ````markdown y cerrando con el mismo.
+- Todo el contenido debe estar **dentro del mismo bloque**, incluyendo explicaciones, fragmentos de código y etiquetas HTML si las hay.
+- Usa sintaxis Markdown estándar y legible.
+- Para código Python, HTML o similar, usa bloques de código bien cerrados con triple acento grave (```) dentro del bloque principal.
+- Si hay fórmulas matemáticas, utiliza notación LaTeX con el símbolo `$`.
+
+El tema es: 
+
+
+FORMATO 2
+
+Explica ...RELLENAR... en formato **Markdown puro**, específicamente diseñado para ser copiado y pegado directamente en un archivo Markdown.
+**REQUISITOS IMPORTANTES:**
+- Usa un **único bloque de código Markdown completo**, comenzando con ````markdown y cerrando con el mismo.
+- Todo el contenido debe estar **dentro del mismo bloque**, incluyendo explicaciones, fragmentos de código y etiquetas HTML si las hay.
+- Usa sintaxis Markdown estándar y legible.
+- Para código Python, HTML o similar, usa bloques de código bien cerrados con triple acento grave (```) dentro del bloque principal.
+- Si hay fórmulas matemáticas, utiliza notación LaTeX con el símbolo `$`.
+
+
+FORMATO 3
+
+Transforma el siguiente texto a formato **Markdown puro**, específicamente diseñado para ser copiado y pegado directamente en un archivo Markdown.
+**REQUISITOS IMPORTANTES:**
+- Usa un **único bloque de código Markdown completo**, comenzando con ````markdown y cerrando con el mismo.
+- Todo el contenido debe estar **dentro del mismo bloque**, incluyendo explicaciones, fragmentos de código y etiquetas HTML si las hay.
+- Usa sintaxis Markdown estándar y legible.
+- Para código Python, HTML o similar, usa bloques de código bien cerrados con triple acento grave (```) dentro del bloque principal.
+- Si hay fórmulas matemáticas, utiliza notación LaTeX con el símbolo `$`.
+
+**Texto a convertir:**
+Aqui va el texto de la transcripcion del video....

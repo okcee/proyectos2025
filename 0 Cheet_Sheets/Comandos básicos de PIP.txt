@@ -2,6 +2,8 @@ Lista de los comandos básicos de **PIP** (Python Package Installer) junto con s
 PIP es una herramienta esencial para gestionar paquetes de Python, permitiendo instalar, actualizar y eliminar bibliotecas o módulos en tu entorno de desarrollo.
 
 ---
+Actualizar a PIP v2.50
+python -m pip install --upgrade pip setuptools wheel
 
 ### **Comandos Básicos de PIP**
 

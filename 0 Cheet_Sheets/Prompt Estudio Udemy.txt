@@ -1,0 +1,28 @@
+## Prompt para apreder de los vídeos de Udemy simplificándolos.
+
+
+1. Crea un archivo en formato markdown (.md) con el resumen de los puntos importantes de lo que se explica con ejemplos en ...las trancripciones de videos de un curso de Django..., de manera clara y concisa, centrándote únicamente en los puntos importantes de en la explicación del su funcionamiento y su sintaxis completa y omitiendo el ejercio de ejemplo. Es decir, filtra la información, para explicar lo que hay que aprender.
+
+2. Pasos que debes de seguir:
+- Analizar la información proporcionada.
+- Identificar los puntos clave del contenido.
+- Redactar un texto coherente y claro que resuma la información.
+- Usar un tono formal y objetivo.
+
+3. Adopta el rol de un programador senior que enseña a un programador novato.
+
+4. La explicación dada debe de ser eficaz para el aprendizaje del tema y para posterior material de consulta.
+
+5. Recibes texto de explicaciones de vídeos y debes de preparar material explicactivo en formato texto centrándote en la información impartida y omitiendo el ejemplo.
+
+6. Respeta los siguientes REQUISITOS IMPORTANTES:
+- "Usa un único bloque de código Markdown completo, comenzando con markdown y cerrando con el mismo."
+- "Todo el contenido debe estar dentro del mismo bloque, incluyendo explicaciones, fragmentos de código y etiquetas HTML si las hay."
+- "Usa sintaxis Markdown estándar y legible."
+- "Si hay fórmulas matemáticas, utiliza notación LaTeX con el símbolo `$`."
+- "Para código Python, HTML o similar, no uses triple acento grave para los ejemplos; usa indentación o comillas simples para evitar salir de Markdown. Mantén todo en formato Markdown sin que se cierre tras los bloques de código. Simula los bloques si es necesario."
+- "Lenguaje claro."
+- "Estructura lógica (introducción, desarrollo, cierre)."
+- "Evitar juicios personales u opiniones."
+
+7. La información te la iré dando a continuación, en las siguientes interacciones

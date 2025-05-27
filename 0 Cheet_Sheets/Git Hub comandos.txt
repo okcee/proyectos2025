@@ -2,6 +2,7 @@ Configuración para Visual Studio Code para que los nuevos repositorios creados 
 git config --global init.defaultBranch main
 git checkout main  -  Asegurarse del cambio de configuración en local
 
+# Iniciando la configuración Git + GitHub
 git init
 git add .
 git add nombreDelArchivo
@@ -10,6 +11,8 @@ git config --global user.name "okcee"
 git status -s	ver el estado en el que se encuentran nuestros archivos
 git commit -m "descripcion"
 git checkout main
+
+
 git log --oneline	listado de todas las copias que tenemos en el repositorio
 git reset --hard	restaurar el archivo a la versión anterior
 git reset --hard 093f1c5	apuntar a un archivo en concreto
@@ -21,6 +24,8 @@ git push -u origin main
 git push  -  Para subir un archivo usaremos git push
 git pull  -  para bajar un cambio desde nuestro repositorio a local usaremos git pull.
 git status --ignored -> Para saber si hay archivos ignorados en el actual commit.
+git log origin/tu_rama..HEAD 
+git log origin/HEAD -> ver los commits que tienes en tu repositorio local y que aún no has subido (pushed) al repositorio remoto
 
     - Para cambiar el origen del remoto
 git remote -v  -  Mostrar los remotos configurados actualmente
@@ -81,3 +86,16 @@ Actualizar referencias locales:
 Para asegurarte de que tu repositorio local está sincronizado y reconoce los cambios remotos, puedes realizar lo siguiente:
 git remote prune origin
 git fetch --all
+
+-- Para sincronizar un directorio ya creado en VScode con un repositorio de GitHub:
+- Para solucionarlo, puedes decirle a Git que permita la fusión de estos historiales no relacionados. El comando es:
+git pull origin main --allow-unrelated-histories
+
+- Después de ejecutar ese comando, si todo va bien, tu repositorio local debería estar sincronizado con el remoto y ya podrás hacer git push y git pull con normalidad.
+Para completar la fusión ahora mismo:
+    - Ejecuta git commit manualmente:   git commit
+    - Si falla el commit, usa: git commit -m "Merge branch 'main' of https://github.com/nombre_usuario/nombre_repositorio allowing unrelated histories"
+      (Puedes usar un mensaje más corto si prefieres, como git commit -m "Merge unrelated histories")
+    - Verifica el estado:   git status
+    - Sube los cambios (recomendado):   git push origin main
+
